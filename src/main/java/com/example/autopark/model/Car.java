@@ -1,21 +1,25 @@
 package com.example.autopark.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Car {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     int id;
     int height;
     int weight;
+    @ManyToOne
+    Floor floor;
 
     public Car() {
     }
 
-    public Car(int height, int weight) {
+    public Car(int id, int height, int weight, Floor floor) {
+        this.id = id;
         this.height = height;
         this.weight = weight;
+        this.floor = floor;
     }
 
     public int getHeight() {

@@ -2,21 +2,26 @@ package com.example.autopark.service;
 
 import com.example.autopark.model.Car;
 import com.example.autopark.model.Floor;
+import com.example.autopark.repository.CarRepo;
 import com.example.autopark.repository.FloorRepo;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
 public class ParkingService {
     private final FloorRepo floorRepo;
+    private final CarRepo carRepo;
 
-    public ParkingService(FloorRepo floorRepo) {
+    public ParkingService(FloorRepo floorRepo, CarRepo carRepo) {
         this.floorRepo = floorRepo;
+        this.carRepo = carRepo;
     }
 
     public Floor getAvailableFloor(Car car) {
         List<Floor> floors = floorRepo.findAll();
+        System.out.println(floors);
         for (Floor floor : floors) {
             if (floor.getCeilingHeight() > car.getHeight() && floor.getRemainingCapacity() > car.getWeight()) {
                 return floor;
@@ -25,7 +30,8 @@ public class ParkingService {
         return null;
     }
 
-    public void parkCar(Car car, Floor floor) {
+    public void parkCar(Car car) {
+        Floor floor = getAvailableFloor(car);
         floor.getCars().add(car);
         floorRepo.save(floor);
     }
