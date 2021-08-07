@@ -16,6 +16,13 @@ public class Floor {
     @OneToMany
     List<Car> cars;
 
+    public Floor(int ceilingHeight, int weightCapacity, int floorNumber, int pricePerMinute) {
+        this.ceilingHeight = ceilingHeight;
+        this.weightCapacity = weightCapacity;
+        this.floorNumber = floorNumber;
+        this.pricePerMinute = pricePerMinute;
+    }
+
     public Floor(int id, int ceilingHeight, int weightCapacity, int floorNumber, int pricePerMinute) {
         this.id = id;
         this.ceilingHeight = ceilingHeight;
@@ -78,5 +85,17 @@ public class Floor {
 
     public void setCars(List<Car> cars) {
         this.cars = cars;
+    }
+
+    @Override
+    public String toString() {
+        return "Floor{" +
+                "id=" + id +
+                ", ceilingHeight=" + ceilingHeight +
+                ", weightCapacity=" + weightCapacity +
+                ", floorNumber=" + floorNumber +
+                ", pricePerMinute=" + pricePerMinute +
+                ", cars=" + cars +
+                '}';
     }
 }

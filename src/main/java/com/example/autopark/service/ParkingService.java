@@ -21,7 +21,6 @@ public class ParkingService {
 
     public Floor getAvailableFloor(Car car) {
         List<Floor> floors = floorRepo.findAll();
-        System.out.println(floors);
         for (Floor floor : floors) {
             if (floor.getCeilingHeight() > car.getHeight() && floor.getRemainingCapacity() > car.getWeight()) {
                 return floor;
@@ -32,8 +31,13 @@ public class ParkingService {
 
     public void parkCar(Car car) {
         Floor floor = getAvailableFloor(car);
-        floor.getCars().add(car);
-        floorRepo.save(floor);
+        if(floor == null) {
+            return;
+        }
+        car.setFloor(floor);
+        System.out.println(car);
+        System.out.println(floor);
+        carRepo.save(car);
     }
 
     public void leave(Car car, int floorNumber) {

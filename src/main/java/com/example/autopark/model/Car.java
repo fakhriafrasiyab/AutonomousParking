@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Car {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     int height;
     int weight;
@@ -15,11 +15,10 @@ public class Car {
     public Car() {
     }
 
-    public Car(int id, int height, int weight, Floor floor) {
+    public Car(int id, int height, int weight) {
         this.id = id;
         this.height = height;
         this.weight = weight;
-        this.floor = floor;
     }
 
     public int getHeight() {
@@ -44,5 +43,23 @@ public class Car {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Floor getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor = floor;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", floor=" + floor +
+                '}';
     }
 }
