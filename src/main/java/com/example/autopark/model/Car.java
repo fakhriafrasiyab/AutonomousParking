@@ -1,5 +1,7 @@
 package com.example.autopark.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class Car {
     int height;
     int weight;
     @ManyToOne
+    @JsonIgnore
     Floor floor;
 
     public Car() {

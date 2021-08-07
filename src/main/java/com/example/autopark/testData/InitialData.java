@@ -19,7 +19,7 @@ public class InitialData implements InitializingBean {
                 20, 400, 1, 4
         ));
         floorRepo.save(new Floor(2,
-                40, 500, 1,
+                40, 500, 2,
                 4));
     }
 }

@@ -3,6 +3,7 @@ package com.example.autopark.service;
 
 import com.example.autopark.model.Car;
 import com.example.autopark.model.Floor;
+import com.example.autopark.repository.CarRepo;
 import com.example.autopark.repository.FloorRepo;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,17 +24,20 @@ import static org.mockito.Mockito.when;
 public class ParkingServiceTest {
 
     @MockBean
-    private final FloorRepo floorRepo;
+    private FloorRepo floorRepo;
+
+    @MockBean
+    private CarRepo carRepo;
 
     @InjectMocks
     private ParkingService parkingService;
 
-    public ParkingServiceTest(FloorRepo floorRepo) {
-        this.floorRepo = floorRepo;
+    public ParkingServiceTest() {
     }
 
+
     @Test
-    public void getAvailableFloorTest() {
+    public void getAvailableFloorTest() throws Exception {
         List<Floor> floors = new ArrayList<>();
         floors.add(new Floor(250, 40000, 1, 10));
         floors.add(new Floor(300, 50000, 2, 15));
@@ -42,5 +46,8 @@ public class ParkingServiceTest {
         Floor floor = parkingService.getAvailableFloor(new Car(1, 100, 2000));
 
         Assert.assertNotNull(floor);
+        Assert.assertEquals(floor.getFloorNumber(), 1);
     }
+
+
 }

@@ -1,19 +1,18 @@
 package com.example.autopark.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Floor {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     int id;
     int ceilingHeight;
     int weightCapacity;
     int floorNumber;
     int pricePerMinute;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Car> cars;
 
     public Floor(int ceilingHeight, int weightCapacity, int floorNumber, int pricePerMinute) {
