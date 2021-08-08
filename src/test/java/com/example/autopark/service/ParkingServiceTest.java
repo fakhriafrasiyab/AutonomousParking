@@ -50,11 +50,13 @@ public class ParkingServiceTest {
     @Test
     public void getRemainingCapacityTest() throws Exception {
         List<Floor> floors = new ArrayList<>();
-        floors.add(new Floor(250, 4000, 1, 10));
+        floors.add(new Floor(250, 400, 1, 10));
         when(floorRepo.findAll()).thenReturn(floors);
-        parkingService.parkCar(new Car(100, 2000));
+        Floor floor = floors.get(0);
+        Car car = new Car(100,200);
+        parkingService.parkCar(car);
         int remainingCapacity = floor.getRemainingCapacity();
-        Assert.assertEquals(remainingCapacity, 2000);
+        Assert.assertEquals(remainingCapacity, 200);
     }
 
 }

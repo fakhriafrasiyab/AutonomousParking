@@ -1,6 +1,7 @@
 package com.example.autopark.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,7 +14,7 @@ public class Floor {
     int floorNumber;
     int pricePerMinute;
     @OneToMany(cascade = CascadeType.ALL)
-    List<Car> cars;
+    List<Car> cars = new ArrayList<>();
 
     public Floor(int ceilingHeight, int weightCapacity, int floorNumber, int pricePerMinute) {
         this.ceilingHeight = ceilingHeight;
@@ -22,12 +23,13 @@ public class Floor {
         this.pricePerMinute = pricePerMinute;
     }
 
-    public Floor(int id, int ceilingHeight, int weightCapacity, int floorNumber, int pricePerMinute) {
+    public Floor(int id, int ceilingHeight, int weightCapacity, int floorNumber, int pricePerMinute, List<Car> cars) {
         this.id = id;
         this.ceilingHeight = ceilingHeight;
         this.weightCapacity = weightCapacity;
         this.floorNumber = floorNumber;
         this.pricePerMinute = pricePerMinute;
+        this.cars = cars;
     }
 
     public Floor() {
