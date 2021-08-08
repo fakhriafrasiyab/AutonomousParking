@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Floor {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     int ceilingHeight;
     int weightCapacity;
@@ -35,7 +35,11 @@ public class Floor {
     }
 
     public int getRemainingCapacity() {
-        return weightCapacity - cars.stream().map(c -> c.getWeight()).reduce(0, (i, j) -> i + j);
+        if (cars == null) {
+            return weightCapacity;
+        } else {
+            return weightCapacity - cars.stream().map(c -> c.getWeight()).reduce(0, (i, j) -> i + j);
+        }
     }
 
     public int getCeilingHeight() {

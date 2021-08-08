@@ -18,8 +18,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(int id, int height, int weight) {
-        this.id = id;
+    public Car(int height, int weight) {
         this.height = height;
         this.weight = weight;
     }
