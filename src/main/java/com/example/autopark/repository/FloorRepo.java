@@ -1,6 +1,5 @@
 package com.example.autopark.repository;
 
-import com.example.autopark.model.Car;
 import com.example.autopark.model.Floor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

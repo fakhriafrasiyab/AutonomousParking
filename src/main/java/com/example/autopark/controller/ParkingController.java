@@ -3,15 +3,17 @@ package com.example.autopark.controller;
 import com.example.autopark.model.Car;
 import com.example.autopark.model.Floor;
 import com.example.autopark.service.ParkingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class ParkingController {
-    @Autowired
-    ParkingService parkingService;
+    final ParkingService parkingService;
+
+    public ParkingController(ParkingService parkingService) {
+        this.parkingService = parkingService;
+    }
 
     @PostMapping(path = "/floor")
     public Floor getAvailableFloor(@RequestBody Car car) throws Exception {

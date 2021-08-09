@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class ParkingService {
@@ -49,7 +48,6 @@ public class ParkingService {
     }
 
     public List<Floor> getAll() {
-        List<Floor> floors = floorRepo.findAll();
-        return floors;
+        return floorRepo.findAll();
     }
 }
